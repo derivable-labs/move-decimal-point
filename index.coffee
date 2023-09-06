@@ -1,7 +1,7 @@
-module.exports = (num, n) ->
+module.exports = (num, n, char = '.') ->
   return num if n is 0
 
-  [ int, frac ] = (''+num).split '.'
+  [ int, frac ] = (''+num).split char
   int or= '0'
   frac or= '0'
 
@@ -23,6 +23,6 @@ module.exports = (num, n) ->
   int  = int[1..]    while int[0] is '0'
   frac = frac[...-1] while frac[frac.length-1] is '0'
 
-  neg + (int or '0') + (if frac.length then '.' + frac else '')
+  neg + (int or '0') + (if frac.length then char + frac else '')
 
 zeros = (n) -> new Array(n+1).join('0')

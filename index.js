@@ -2,12 +2,15 @@
 (function() {
   var zeros;
 
-  module.exports = function(num, n) {
+  module.exports = function(num, n, char) {
     var frac, int, neg, ref;
+    if (char == null) {
+      char = '.';
+    }
     if (n === 0) {
       return num;
     }
-    ref = ('' + num).split('.'), int = ref[0], frac = ref[1];
+    ref = ('' + num).split(char), int = ref[0], frac = ref[1];
     int || (int = '0');
     frac || (frac = '0');
     neg = (int[0] === '-' ? '-' : '');
@@ -34,7 +37,7 @@
     while (frac[frac.length - 1] === '0') {
       frac = frac.slice(0, -1);
     }
-    return neg + (int || '0') + (frac.length ? '.' + frac : '');
+    return neg + (int || '0') + (frac.length ? char + frac : '');
   };
 
   zeros = function(n) {
